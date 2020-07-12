@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <title> Smart CBT Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Admin Dashboard " name="description" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -20,7 +20,7 @@
 </head>
 
 <body>
-
+    
     <div class="account-pages my-5 pt-sm-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -31,29 +31,29 @@
                             <div class="position-relative">
                                 <h5 class="text-white font-size-20">Welcome Back !</h5>
                                 <p class="text-white-50 mb-0">Sign in to continue to Smart CBT.</p>
-                                <a href="index.php" class="logo logo-admin mt-4">
+                                <a href="index.html" class="logo logo-admin mt-4">
                                     <img src="assets/images/logo-sm-dark.png" alt="" height="30">
                                 </a>
                             </div>
                         </div>
                         <div class="card-body pt-5">
                             <div class="p-2">
-                                <form class="form-horizontal" action="controller/login.php" method="post">
+                                <form class="form-horizontal" action="admin.php">
 
                                     <div class="form-group">
-                                        <label for="username">Email</label>
-                                        <input type="email" name = "email" class="form-control" required id="email" placeholder="Enter Email">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" id="username" placeholder="Enter username">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="userpassword">Password</label>
-                                        <input type="password" name = "password" class="form-control" required id="userpassword" placeholder="Enter password">
+                                        <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
                                     </div>
 
 
 
                                     <div class="mt-3">
-                                        <button class="btn btn-primary btn-block waves-effect waves-light" name ="login" type="submit">Log In</button>
+                                        <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Log In</button>
                                     </div>
 
 
