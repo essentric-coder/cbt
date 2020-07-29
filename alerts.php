@@ -7,7 +7,7 @@
 <body>
 <button onclick="JSalert()">Show an Alert</button>
 <button onclick="JSalerts()">Show an Alert</button>
-
+ 
 <script type="text/javascript">
 function JSalert(){
 	swal({

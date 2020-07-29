@@ -124,13 +124,14 @@
                         $n = mysqli_num_rows($c);
 
                         if ($n > 0) {
-                          echo "Please Activate the Agent. Agent already exist";
+
+                          echo '<script> swal("Error!", "Agent Already Exists!", "error");</script>';
 
                         }
                         else {
                         //insert  =
                         $query  = mysqli_query($conn,"INSERT INTO agent (exam_id,exam_title,Agent_status,exam_status) VALUES('$exam_id','$exam_title','$status','$exam_status') ");
-
+                        echo '<script> swal("Success!", "Agent Added Successfully!", "success");</script>';
                       }
 
                      }

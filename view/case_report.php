@@ -40,19 +40,17 @@ include('navbar.php');
                                  <div class="col-12">
                                      <div class="card">
                                          <div class="card-body">
-
-
-
                                              <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                <thead>
                                                    <tr>
+                                                      <th>Id</th>
                                                        <th>Name</th>
                                                        <th>Exam</th>
                                                        <th>Offence</th>
                                                        <th>Time</th>
 
                                                        <th>Status</th>
-                                                       <th>Action</th>
+                                                       
                                                    </tr>
                                                </thead>
 
@@ -70,13 +68,10 @@ include('navbar.php');
                                                        <td>'.$row['time'].'</td>
 
 
-                                                       <td>
+                                                              <td>
                                                                    <div class="badge badge-soft-warning font-size-12">'.$row['status'].'</div>
                                                                </td>
-                                                               <td>
-                                                                   <a href="javascript:void(0);" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
-                                                                   <a href="javascript:void(0);" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
-                                                               </td>
+                                                               
                                                      </tr>';
                                                    }
                                                      ?>

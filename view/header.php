@@ -19,7 +19,7 @@ $img =   $row['picture'];
     <!-- App favicon -->
     <link rel="shortcut icon" href="../assets/images/favicon.ico">
     <link href="../assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
-
+    <script src="assets/sweetalert.min.js"></script>
     <!-- jquery.vectormap css -->
     <link href="../assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
 
