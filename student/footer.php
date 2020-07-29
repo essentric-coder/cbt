@@ -76,21 +76,6 @@
 
     <!-- Datatable init js -->
     <script src="../assets/js/pages/datatables.init.js"></script>
-    <!-- apexcharts -->
-    <script src="../assets/libs/apexcharts/apexcharts.min.js"></script>
 
     <script src="vassets/js/pages/dashboard-2.init.js"></script>
-
-    <script src="../assets/libs/jquery-knob/jquery.knob.min.js"></script>
-
-  <script src="../assets/js/pages/jquery-knob.init.js"></script>
-
-
-      <!-- Datatable init js -->
-      <script src="../assets/js/pages/datatables.init.js"></script>
-    <!-- Sweet Alerts js -->
-    <script src="../assets/libs/sweetalert2/sweetalert2.min.js"></script>
-
-    <!-- Sweet alert init js-->
-    <script src="../assets/js/pages/sweet-alerts.init.js"></script>
-</body>
+    </body>

@@ -1,4 +1,13 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../assets/sweetalert.min.js"></script>
+  
+</head>
+<body>
+
+
 <?php
 
 
@@ -66,18 +75,51 @@ if (isset($_POST['register_admin']) && !empty($_FILES["file"]["name"])){
         //check if email already exist
         $check_email = mysqli_query($conn,"SELECT * FROM admin_table  WHERE email_address = '$email' ");
         $e  = mysqli_num_rows($check_email);
-        if ($e > 1) {
-             echo "email ready exists";
+        if ($e > 0) {
+            
+             echo '<script>
+             swal({
+              title: "Email Already Exist",
+              text: "Please use another Email Address!!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                swal("Redirecting....");
+                window.location.assign("../view/admin.php");
+              } else {
+                swal("Redirecting....");
+                window.location.assign("../view/admin.php");
+              }
+            });
+             
+             </script>';
         }
         else {
           //check if phone already exist
           $check_email = mysqli_query($conn,"SELECT * FROM admin_table  WHERE phone_number = '$phone' ");
           $ph  = mysqli_num_rows($check_email);
-          if ($ph > 1) {
-               echo "phone number exist";
-
-
-
+          if ($ph > 0) {
+            echo '<script>
+            swal({
+             title: "Phone Number Already Exist",
+             text: "Please use another Phone Number!!",
+             icon: "warning",
+             buttons: true,
+             dangerMode: true,
+           })
+           .then((willDelete) => {
+             if (willDelete) {
+               swal("Redirecting....");
+               window.location.assign("../view/admin.php");
+             } else {
+               swal("Redirecting....");
+               window.location.assign("../view/admin.php");
+             }
+           });         
+            </script>';
 
           }
           else{
@@ -97,10 +139,46 @@ if (isset($_POST['register_admin']) && !empty($_FILES["file"]["name"])){
                                                                 )";
                   $execute = mysqli_query($conn,$query);
                   if($execute){
-                    echo "saved";
+                    echo '<script>
+                    swal({
+                     title: "Registration Successful!!",
+                     text: "New Admin Registered Successfully",
+                     icon: "success",
+                     buttons: true,
+                     dangerMode: false,
+                   })
+                   .then((willDelete) => {
+                     if (willDelete) {
+                       swal("Redirecting....");
+                       window.location.assign("../view/admin.php");
+                     } else {
+                       swal("Redirecting....");
+                       window.location.assign("../view/admin.php");
+                     }
+                   });
+                    
+                    </script>';
                   }
                   else{
-                    echo "Not saved";
+                    echo '<script>
+                    swal({
+                     title: "Opps! Sorry an Error Occurred!",
+                     text: "Please Check Database Connection and Retry!!",
+                     icon: "warning",
+                     buttons: true,
+                     dangerMode: true,
+                   })
+                   .then((willDelete) => {
+                     if (willDelete) {
+                       swal("Redirecting....");
+                       window.location.assign("../view/admin.php");
+                     } else {
+                       swal("Redirecting....");
+                       window.location.assign("../view/admin.php");
+                     }
+                   });
+                    
+                    </script>';
                   }
 
 
@@ -141,8 +219,47 @@ if(isset($_POST['AddExam'])){
 			";
     $add = mysqli_query($conn,$query);
     if($add){
-         header('location:../view/add_exam.php');
 
+      echo '<script>
+      swal({
+       title: "Registration Successful!!",
+       text: "New Exam Added Successfully",
+       icon: "success",
+       buttons: true,
+       dangerMode: false,
+     })
+     .then((willDelete) => {
+       if (willDelete) {
+         swal("Redirecting....");
+         window.location.assign("../view/add_exam.php");
+       } else {
+         swal("Redirecting....");
+         window.location.assign("../view/add_exam.php");
+       }
+     });
+      
+      </script>';
+
+    }
+    else{  
+      echo '<script>
+      swal({
+       title: "Opps! Sorry an Error Occurred!",
+       text: "Please Check Database Connection and Retry!!",
+       icon: "warning",
+       buttons: true,
+       dangerMode: true,
+     })
+     .then((willDelete) => {
+       if (willDelete) {
+         swal("Redirecting....");
+         window.location.assign("../view/add_exam.php");
+       } else {
+         swal("Redirecting....");
+         window.location.assign("../view/add_exam.php");
+       }
+     });
+     </script>';
     }
 
 
@@ -174,10 +291,45 @@ if(isset($_POST['send'])){
 
   $execute_query =mysqli_query($conn,$query);
   if($execute_query) {
-    echo 'saved';
+    echo '<script>
+    swal({
+     title: "Notification Sent",
+     text: "New Notification Sent Successfully",
+     icon: "success",
+     buttons: true,
+     dangerMode: false,
+   })
+   .then((willDelete) => {
+     if (willDelete) {
+       swal("Redirecting....");
+       window.location.assign("../view/send_notification.php");
+     } else {
+       swal("Redirecting....");
+       window.location.assign("../view/send_notification.php");
+     }
+   });
+    
+    </script>';
   }
   else{
-    echo 'not saved';
+    echo '<script>
+    swal({
+     title: "Opps! Sorry an Error Occurred!",
+     text: "Please Check Database Connection and Retry!!",
+     icon: "warning",
+     buttons: true,
+     dangerMode: true,
+   })
+   .then((willDelete) => {
+     if (willDelete) {
+       swal("Redirecting....");
+       window.location.assign("../view/send_notification.php");
+     } else {
+       swal("Redirecting....");
+       window.location.assign("../view/send_notification.php");
+     }
+   });
+   </script>';
   }
 
 
@@ -223,15 +375,50 @@ if (isset($_POST['register_student']) && !empty($_FILES["file"]["name"])){
         //check if email already exist
         $check_email = mysqli_query($conn,"SELECT * FROM student_table  WHERE email = '$email' ");
         $e  = mysqli_num_rows($check_email);
-        if ($e > 1) {
-             echo "email ready exists";
+        if ($e > 0) {
+          echo '<script>
+          swal({
+           title: "Email Already Exist",
+           text: "Please use another Email Address!!",
+           icon: "warning",
+           buttons: true,
+           dangerMode: true,
+         })
+         .then((willDelete) => {
+           if (willDelete) {
+             swal("Redirecting....");
+             window.location.assign("../view/student_register.php");
+           } else {
+             swal("Redirecting....");
+             window.location.assign("../view/student_register.php");
+           }
+         });
+          
+          </script>';
         }
         else {
           //check if phone already exist
           $check_email = mysqli_query($conn,"SELECT * FROM student_table  WHERE phone = '$phone' ");
           $ph  = mysqli_num_rows($check_email);
-          if ($ph > 1) {
-               echo "phone number exist";
+          if ($ph > 0) {
+            echo '<script>
+            swal({
+             title: "Phone Number Already Exist",
+             text: "Please use another Phone Number!!",
+             icon: "warning",
+             buttons: true,
+             dangerMode: true,
+           })
+           .then((willDelete) => {
+             if (willDelete) {
+               swal("Redirecting....");
+               window.location.assign("../view/student_registert.php");
+             } else {
+               swal("Redirecting....");
+               window.location.assign("../view/student_register.php");
+             }
+           });         
+            </script>';
 
           }
           else{
@@ -259,10 +446,45 @@ if (isset($_POST['register_student']) && !empty($_FILES["file"]["name"])){
                                                                 )";
                   $execute = mysqli_query($conn,$query);
                   if($execute){
-                    echo "saved";
+                    echo '<script>
+                    swal({
+                     title: "Registration Successful!!",
+                     text: "New Student Registered Successfully",
+                     icon: "success",
+                     buttons: true,
+                     dangerMode: false,
+                   })
+                   .then((willDelete) => {
+                     if (willDelete) {
+                       swal("Redirecting....");
+                       window.location.assign("../view/student_register.php");
+                     } else {
+                       swal("Redirecting....");
+                       window.location.assign("../view/student_register.php");
+                     }
+                   });
+                    
+                    </script>';
                   }
                   else{
-                    echo "Not saved";
+                    echo '<script>
+                    swal({
+                     title: "Opps! Sorry an Error Occurred!",
+                     text: "Please Check Database Connection and Retry!!",
+                     icon: "warning",
+                     buttons: true,
+                     dangerMode: true,
+                   })
+                   .then((willDelete) => {
+                     if (willDelete) {
+                       swal("Redirecting....");
+                       window.location.assign("../view/student_register.php");
+                     } else {
+                       swal("Redirecting....");
+                       window.location.assign("../view/student_register.php");
+                     }
+                   });
+                   </script>';
                   }
 
 
@@ -286,9 +508,28 @@ if(isset($_POST['changepassword'])){
   $cpassword = mysqli_escape_string($conn,$_POST['cpassword']);
 
   if($pass != $cpassword) {
-     echo "password mismatch";
-
+    echo '<script>
+    swal({
+     title: "Password Mismatch!",
+     text: "Please Check The password!!",
+     icon: "warning",
+     buttons: true,
+     dangerMode: true,
+   })
+   .then((willDelete) => {
+     if (willDelete) {
+       swal("Redirecting....");
+       window.location.assign("../view/change_password.php");
+     } else {
+       swal("Redirecting....");
+       window.location.assign("../view/change_password.php");
+     }
+   });
+   </script>';
   }
+
+
+  
   else {
        //update admin $password
 
@@ -299,16 +540,50 @@ if(isset($_POST['changepassword'])){
 
        $update = mysqli_query($conn,"UPDATE admin_table SET password = '$password', salt = '$salt' WHERE email_address = '$email'");
           if ($update){
-            echo 'password changed';
+            echo '<script>
+            swal({
+             title: "Password Updated!!",
+             text: "User password Updated Successfully",
+             icon: "success",
+             buttons: true,
+             dangerMode: false,
+           })
+           .then((willDelete) => {
+             if (willDelete) {
+               swal("Redirecting....");
+               window.location.assign("../view/change_password.php");
+             } else {
+               swal("Redirecting....");
+               window.location.assign("../view/change_password.php");
+             }
+           });
+            
+            </script>';
           }
           else{
-            echo 'failed';
+            echo '<script>
+            swal({
+             title: "Opps! Sorry an Error Occurred!",
+             text: "Please Check Database Connection and Retry!!",
+             icon: "warning",
+             buttons: true,
+             dangerMode: true,
+           })
+           .then((willDelete) => {
+             if (willDelete) {
+               swal("Redirecting....");
+               window.location.assign("../view/change_password.php");
+             } else {
+               swal("Redirecting....");
+               window.location.assign("../view/change_password.php");
+             }
+           });
+           </script>';
           }
 
   }
 
 }
-
 
 //update student Info
 
@@ -338,15 +613,51 @@ if (isset($_POST['update_student']) ){
         //check if email already exist
         $check_email = mysqli_query($conn,"SELECT * FROM student_table  WHERE email = '$email' ");
         $e  = mysqli_num_rows($check_email);
-        if ($e > 1) {
-             echo "email ready exists";
+        if ($e > 0) {
+          echo '<script>
+          swal({
+           title: "Email Already Exist",
+           text: "Please use another Email Address!!",
+           icon: "warning",
+           buttons: true,
+           dangerMode: true,
+         })
+         .then((willDelete) => {
+           if (willDelete) {
+             swal("Redirecting....");
+             window.location.assign("../view/update_students.php");
+           } else {
+             swal("Redirecting....");
+             window.location.assign("../view/update_students.php");
+           }
+         });
+          
+          </script>';
         }
         else {
           //check if phone already exist
           $check_email = mysqli_query($conn,"SELECT * FROM student_table  WHERE phone = '$phone' ");
           $ph  = mysqli_num_rows($check_email);
-          if ($ph > 1) {
-               echo "phone number exist";
+          if ($ph > 0) {
+            echo '<script>
+            swal({
+             title: "Phone Number Already Exist",
+             text: "Please use another Phone Number!!",
+             icon: "warning",
+             buttons: true,
+             dangerMode: true,
+           })
+           .then((willDelete) => {
+             if (willDelete) {
+               swal("Redirecting....");
+               window.location.assign("../view/update_students.php");
+             } else {
+               swal("Redirecting....");
+               window.location.assign("../view/update_students.php");
+             }
+           });         
+            </script>';
+               
 
           }
           else{
@@ -365,10 +676,45 @@ if (isset($_POST['update_student']) ){
                                                    WHERE student_id = '$sid'";
                   $execute = mysqli_query($conn,$query);
                   if($execute){
-                    echo "saved";
+                    echo '<script>
+                    swal({
+                     title: "Student Record Updated!!",
+                     text: "Record Updated Successfully",
+                     icon: "success",
+                     buttons: true,
+                     dangerMode: false,
+                   })
+                   .then((willDelete) => {
+                     if (willDelete) {
+                       swal("Redirecting....");
+                       window.location.assign("../view/view_students.php");
+                     } else {
+                       swal("Redirecting....");
+                       window.location.assign("../view/view_students.php");
+                     }
+                   });
+                    
+                    </script>';
                   }
                   else{
-                    echo "Not saved";
+                    echo '<script>
+                    swal({
+                     title: "Opps! Sorry an Error Occurred!",
+                     text: "Please Check Database Connection and Retry!!",
+                     icon: "warning",
+                     buttons: true,
+                     dangerMode: true,
+                   })
+                   .then((willDelete) => {
+                     if (willDelete) {
+                       swal("Redirecting....");
+                       window.location.assign("../view/view_students.php");
+                     } else {
+                       swal("Redirecting....");
+                       window.location.assign("../view/view_students.php");
+                     }
+                   });
+                   </script>';
                   }
 
 
@@ -482,12 +828,47 @@ if (isset($_POST["import"]))
                     $result = mysqli_query($conn, $query);
 
                     if (! empty($result)) {
-                        $type = "success";
-                        $message = "Excel Data Imported into the Database";
-                        header('location:../view/add_questions.php');
+
+                      echo '<script>
+                      swal({
+                       title: "Questions Upload Successful!!",
+                       text: "Excel Data Imported into the Database",
+                       icon: "success",
+                       buttons: true,
+                       dangerMode: false,
+                     })
+                     .then((willDelete) => {
+                       if (willDelete) {
+                         swal("Redirecting....");
+                         window.location.assign("../view/add_questions.php");
+                       } else {
+                         swal("Redirecting....");
+                         window.location.assign("../view/add_questions.php");
+                       }
+                     });
+                      
+                      </script>';
+                        
                     } else {
-                        $type = "error";
-                        $message = "Problem in Importing Excel Data";
+                      echo '<script>
+                      swal({
+                       title: "Opps! Sorry an Error Occurred!",
+                       text: "Problem in Importing Excel Data!!",
+                       icon: "warning",
+                       buttons: true,
+                       dangerMode: true,
+                     })
+                     .then((willDelete) => {
+                       if (willDelete) {
+                         swal("Redirecting....");
+                         window.location.assign("../view/add_questions.php");
+                       } else {
+                         swal("Redirecting....");
+                         window.location.assign("../view/add_questions.php");
+                       }
+                     });
+                     </script>';
+                        
                     }
                 }
              }
@@ -496,8 +877,35 @@ if (isset($_POST["import"]))
   }
   else
   {
-        $type = "error";
-        $message = "Invalid File Type. Upload Excel File.";
+    echo '<script>
+    swal({
+     title: "Invalid File Type. Upload Excel File!",
+     text: "Problem in Importing Excel Data!!",
+     icon: "warning",
+     buttons: true,
+     dangerMode: true,
+   })
+   .then((willDelete) => {
+     if (willDelete) {
+       swal("Redirecting....");
+       window.location.assign("../view/add_questions.php");
+     } else {
+       swal("Redirecting....");
+       window.location.assign("../view/add_questions.php");
+     }
+   });
+   </script>';
+       
   }
 }
+
+//updateexams
+
+
+
 ?>
+
+
+
+</body>
+</html>

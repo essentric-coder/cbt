@@ -32,11 +32,11 @@ $img =   $row['picture'];
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title">Menu</li>
+
 
                 <li>
                     <a href="Dashboard.php" class="waves-effect">
-                        <i class="mdi mdi-airplay"></i><span class="badge badge-pill badge-info float-right">2</span>
+                        <i class="mdi mdi-airplay"></i><span class="badge badge-pill badge-info float-right"></span>
                         <span>Dashboard</span>
                     </a>
 
@@ -56,7 +56,7 @@ $img =   $row['picture'];
                         <i class="mdi mdi-calendar-check"></i>
 
                         <span>Notification</span>
-                        <span class="badge badge-pill badge-danger float-right">6</span>
+
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="view_notification.php">Exam Notification</a></li>
@@ -73,7 +73,7 @@ $img =   $row['picture'];
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="Student_register.php">Register</a></li>
-                      
+
                         <li><a href="view_students.php">View Student</a></li>
                     </ul>
                 </li>
@@ -110,12 +110,18 @@ $img =   $row['picture'];
                         <span>Reports</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="Student_report.php">Student Report</a></li>
-                        <li><a href="exam_report.php">Exam Report</a></li>
-                        <li><a href="admin_report.php">Admin Report</a></li>
-                        <li><a href="Notification_report.php">Notification Report</a></li>
-                        <li><a href="case_report.php">Case Report</a></li>
+                        <li><a href="Student_report.php">Exam Report</a></li>
+                        <li><a href="agent_report.php">Agent Log Report</a></li>
+                        <li><a href="case_report.php">Agent Report</a></li>
                     </ul>
+                </li>
+
+                <li>
+                    <a href="logout.php" class="waves-effect">
+                        <i class="mdi mdi-inbox"></i>
+                        <span>Backup</span>
+                    </a>
+
                 </li>
 
                 <li>

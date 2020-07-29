@@ -61,7 +61,7 @@
                                        <img class="rounded-circle header-profile-user" style="width:150px; height:150px;" src="../assets/images/e.png" alt="Header Avatar">
 
                                      </p>
-                                        <a href = "exam/exam.php"><button class="btn btn-primary" type="submit">Start</button></a>
+                                        <a href = "exam/select.php"><button class="btn btn-primary" type="submit">Start</button></a>
                                  </div>
                              </div>
                          </div>

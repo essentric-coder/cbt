@@ -3,6 +3,12 @@
 include ('connect.php');
 session_start();
 
+if(!isset($_SESSION['student_email']) || $_SESSION['student_email'] == ''){
+  header('location: ../index.php');
+}
+
+
+
 $log_id = "";
 
 $email_id  = $_SESSION['student_email'];
@@ -19,6 +25,17 @@ $fname = $row['firstname'];
 $lname = $row['lastname'];
 $img =   $row['user_image'];
 $s_id =   $row['student_id'];
+
+//get user_id
+$email_id  = $_SESSION['student_email'];
+$v =  mysqli_query($conn,"SELECT * from student_table WHERE email = '$email_id' ");
+$rw = mysqli_fetch_assoc($v);
+$uid = $row['student_id'];
+
+//Update exam
+mysqli_query($conn,"UPDATE user_exam_enroll_table SET attendance_status = 'present' WHERE user_id = '$uid' ");
+
+
 ?>
 
 
@@ -29,7 +46,6 @@ include 'connect.php';
 $filepage = explode('/',$_SERVER['REQUEST_URI']);
 $filepage = end($filepage);
 ?>
-
 
 
 <head>
@@ -60,13 +76,9 @@ $filepage = end($filepage);
   <link rel="stylesheet" href="style/TimeCircles.css" />
   <script src="style/TimeCircles.js"></script>
 
-
-
-        <script type="text/javascript" src="inc/TimeCircles.js"></script>
-        <link rel="stylesheet" href="inc/TimeCircles.css" />
-
-
-
+  <script type="text/javascript" src="inc/jquery.min.js"></script>
+       <script type="text/javascript" src="inc/TimeCircles.js"></script>
+       <link rel="stylesheet" href="inc/TimeCircles.css" />
 
 </head>
 
@@ -88,10 +100,19 @@ $filepage = end($filepage);
                                 </button>
                             </div>
 
+                            <?php
+
+                            $d = mysqli_query($conn,"SELECT * from send_notification  ");
+                            $n = mysqli_num_rows($d);
+
+
+
+                            ?>
+
                             <div class="dropdown d-inline-block">
                                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="mdi mdi-bell-outline"></i>
-                                    <span class="badge badge-danger badge-pill">3</span>
+                                    <span class="badge badge-danger badge-pill"><?php echo $n;?></span>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
                                     <div class="p-3">
@@ -100,36 +121,51 @@ $filepage = end($filepage);
                                                 <h6 class="m-0"> Notifications </h6>
                                             </div>
                                             <div class="col-auto">
-                                                <a href="#!" class="small"> View All</a>
+                                                <a href="#" class="small"> View All</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div data-simplebar style="max-height: 230px;">
 
 
-                                        <a href="#" class="text-reset notification-item">
-                                            <div class="media">
-                                                <div class="avatar-xs mr-3">
-                                                    <span class="avatar-title bg-success rounded-circle font-size-16">
-                                                        <i class="bx bx-badge-check"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mt-0 mb-1">Your item is shipped</h6>
+
+                                      <?php
+
+                                      $d = mysqli_query($conn,"SELECT * from send_notification  ");
+                                      while($r = mysqli_fetch_assoc($d)) {
+
+                                                echo '
+                                                <a href="#" class="text-reset notification-item">
+                                                    <div class="media">
+                                                        <div class="avatar-xs mr-3">
+                                                            <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                                <i class="bx bx-badge-check"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div class="media-body">
+                                                    <h6 class="mt-0 mb-1">'.$r['title'].'</h6>
                                                     <div class="font-size-12 text-muted">
-                                                        <p class="mb-1">If several languages coalesce the grammar</p>
-                                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                                    </div>
+                                                        <p class="mb-1">'.$r['message'].'</p>
+                                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i>'.$r['created_on'].'</p>
+
                                                 </div>
-                                            </div>
-                                        </a>
+                                                </div>
+                                                  </div>
+                                            </a>
+
+                                                ';
+                                              }
+                                                ?>
+
 
                                     </div>
                                     <div class="p-2 border-top">
-                                        <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
+                                        <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="#">
                                             <i class="mdi mdi-arrow-right-circle mr-1"></i> View More..
                                         </a>
                                     </div>
+
+
                                 </div>
                             </div>
 
@@ -142,7 +178,6 @@ $filepage = end($filepage);
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <!-- item-->
 
-                                    <a class="dropdown-item" href="change_password.php"><i class="bx bx-lock-open font-size-16 align-middle mr-1"></i>Change Password</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item text-danger" href="Logout.php"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
                                 </div>
@@ -176,10 +211,5 @@ $filepage = end($filepage);
                     </div>
                 </div>
             </header>
-          </div>
-          <div id="countdown">
-          <div id='tiles'></div>
-
-          </div>
 
           <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="js/script.js"></script>

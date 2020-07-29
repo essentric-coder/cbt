@@ -77,13 +77,10 @@
     <!-- Datatable init js -->
     <script src="assets/js/pages/datatables.init.js"></script>
     <!-- apexcharts -->
-    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+  
 
     <script src="vassets/js/pages/dashboard-2.init.js"></script>
 
-    <script src="assets/libs/jquery-knob/jquery.knob.min.js"></script>
-
-  <script src="assets/js/pages/jquery-knob.init.js"></script>
 
 
       <!-- Datatable init js -->

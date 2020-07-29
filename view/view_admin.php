@@ -56,15 +56,16 @@
                                                                                                   <th>Firstname</th>
                                                                                                   <th>lastname</th>
                                                                                                   <th>email</th>
-                                                                                                  <th>Password </th>
+
 
 
 
                                                                                                   <th>Status</th>
+																																																	<th>phone_number</th>
                                                                                                   <th>Action</th>
-                                                                                                  <th>phone_number</th>
+
                                                                                                   <th>Created On</th>
-                                                                                                  <th>Salt</th>
+
 
                                                                                                   </tr>
                                                                                               </thead>
@@ -73,27 +74,28 @@
 
     $query = mysqli_query($conn, "SELECT * FROM admin_table");
     while ($row = mysqli_fetch_assoc($query)) {
-
+   $del = "delete/delete_admin.php?id=".$row['admin_id'];
         echo '<tr>
                                    <td>' . $row['admin_id'] . '</td>
                                                                                                   <td>' . $row['firstname'] . '</td>
                                                                                                   <td>' . $row['lastname'] . '</td>
                                                                                                   <td>' . $row['email_address'] . '</td>
-                                                                                                  <td>' . $row['password'] . ' </td>
+
 
 
                                                                                                   <td>
                                                                                                               <div class="badge badge-soft-warning font-size-12">' . $row['status'] . '</div>
                                                                                                           </td>
+																																																					<td>' . $row['phone_number'] . '</td>
                                                                                                           <td>
 
-                                                                                                                  <a href="../controller/script.php?updatexam = ' . $row['admin_id'] . '" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
-                                                                                                                  <a href = "../controller/ops/deleteexam.php?id = "  class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
+
+                                                                                                                  <a href = "'.$del.' "  class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
                                                                                                               </td>
 
-                                                                                                              <td>' . $row['phone_number'] . '</td>
+
                                                                                                               <td>' . $row['admin_created_on'] . '</td>
-                                                                                                              <td>' . $row['salt'] . '</td>
+
                                                                                                   </tr>';
     }
 

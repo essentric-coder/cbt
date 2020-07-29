@@ -29,6 +29,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- end page title -->
                     <?php
 
@@ -64,23 +65,21 @@
 
                                                                                                               <tbody>';
 
-                    $query = mysqli_query($conn, "SELECT * FROM student_table");
-                    while ($row = mysqli_fetch_assoc($query)) {
-                         $s_id  = $row['student_id'];
-                         $url = "update_students.php?id=".$s_id;
-                        echo '<tr>
-                                                   <td>' . $row['student_id'] . '</td>
+                                                                                                $query = mysqli_query($conn, "SELECT * FROM student_table");
+                                                                                                while ($row = mysqli_fetch_assoc($query)) {
+                                                                                                     $s_id  = $row['student_id'];
+                                                                                                     $url = "update_students.php?id=".$s_id;
+                                                                                                     $del = "delete/delete_student.php?id=".$s_id;
+                                                                                                    echo '<tr>
+                                                                                                                 <td>' . $row['student_id'] . '</td>
                                                                                                                   <td>' . $row['firstname'] . '</td>
                                                                                                                   <td>' . $row['lastname'] . '</td>
                                                                                                                   <td>' . $row['email'] . '</td>
                                                                                                                   <td>' . $row['phone'] . ' </td>
-
-
-
                                                                                                                           <td>
 
                                                                                                                                   <a href = "'.$url.'" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
-                                                                                                                                  <a href = "../controller/ops/deleteexam.php?id = "  class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
+                                                                                                                                  <a href = " '.$del.' "  class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
                                                                                                                               </td>
 
 

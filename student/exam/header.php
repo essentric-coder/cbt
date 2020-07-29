@@ -1,161 +1,143 @@
+  <?php
+//include 'controller/script.php';
+include ('connect.php');
+session_start();
+
+if(!isset($_SESSION['student_email']) || $_SESSION['student_email'] == ''){
+  header('location: ../index.php');
+}
+
+$log_id = "";
+
+$email_id  = $_SESSION['student_email'];
+$n = mysqli_query($conn,"SELECT * FROM student_table");
+$r = mysqli_fetch_assoc($n);
+$s_id  = $r['student_id'];
+$current_datetime = date("Y-m-d") . ' ' . date("H:i:s", STRTOTIME(date('h:i:sa')));
+
+
+$email = $_SESSION['student_email'];
+$query1 = mysqli_query($conn,"SELECT * FROM student_table WHERE email = '$email'");
+$row  = mysqli_fetch_assoc($query1);
+$fname = $row['firstname'];
+$lname = $row['lastname'];
+$img =   $row['user_image'];
+$s_id =   $row['student_id'];
+
+
+//update exam Status
+
+$sql
+?>
+
+
+
+
 
 <?php
 
-/**** Title: Header/Navigation Pane ****/
-session_start();
+include 'connect.php';
 $filepage = explode('/',$_SERVER['REQUEST_URI']);
 $filepage = end($filepage);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
 
 
-<style>
-  #clockcontainer{
-  float: right;
-  margin-top: 27px;
-  margin-right: 150px;
-}
-</style>
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard | Smart CBT </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="../assets/images/favicon.ico">
+    <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
 
-       <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- jquery.vectormap css -->
+    <link href="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
 
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+      <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+      <link rel="stylesheet" href="assets/style/bootstrap-datetimepicker.css" />
+          <script src="assets/style/bootstrap-datetimepicker.js"></script>
 
-        <link href="css/metisMenu.min.css" rel="stylesheet">
+          <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" href="style/TimeCircles.css" />
+  <script src="style/TimeCircles.js"></script>
 
+  <script type="text/javascript" src="inc/jquery.min.js"></script>
+       <script type="text/javascript" src="inc/TimeCircles.js"></script>
+       <link rel="stylesheet" href="inc/TimeCircles.css" />
 
-        <link href="css/timeline.css" rel="stylesheet">
+</head>
 
+<body data-layout="detached" data-topbar="colored">
 
-        <link href="css/startmin.css" rel="stylesheet">
+    <div class="container-fluid">
+        <!-- Begin page -->
+        <div id="layout-wrapper">
 
-
-        <link href="css/morris.css" rel="stylesheet">
-
-
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="css/style.css">
-
-
-    </head>
-    <body>
-
-        <div id="wrapper">
-
-
-            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                  <ul class="nav navbar-right navbar-top-links">
-
-
-                 <li class="dropdown">
-                                              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i>
-                            <?php
-      if(isset ($_SESSION['student_email']))
-      {
-        echo $_SESSION['student_email'];
-
-      }
-      else
-      {
-        echo 'USER';
-      }
-
-    ?>
-    <?php
-                        if(isset ($_SESSION['student_email']))
-      {
-                        ?>
-
-  <b class="caret"></b>
-                        </a>
-
-                                         <ul class="dropdown-menu dropdown-user">
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="container-fluid">
+                        <div class="float-right">
 
 
-                            <li><a href="userprofile.php"><i class="fa fa-user fa-fw"></i>  Profile</a>
-                            </li>
-                            <li><a href="changepass.php"><i class="fa fa-edit icon"></i> Change Password</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                            </li>
+                            <div class="dropdown d-none d-lg-inline-block ml-1">
+                                <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+                                    <i class="mdi mdi-fullscreen"></i>
+                                </button>
+                            </div>
 
+                            
 
-                        </ul>
-                        <?php }
-                        ?>
-                    </li>
-                </ul>
+                            <div class="dropdown d-inline-block">
+                                <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img class="rounded-circle header-profile-user" src="<?php echo '../../images_admin/'.$img; ?>" alt="Header Avatar">
+                                    <span class="d-none d-xl-inline-block ml-1"><?php echo $fname; ?></span>
+                                    <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
 
-
-
-
-                <div class="navbar-default sidebar" role="navigation">
-                    <div class="sidebar-nav navbar-collapse">
-                        <ul class="nav" id="side-menu">
-                            <li class="sidebar-search">
-                               <div class="input-group custom-search-form">
-                                </span>
+                                    
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-danger" href="Logout.php"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
                                 </div>
+                            </div>
 
-                            </li>
+                        </div>
+                        <div>
+                            <!-- LOGO -->
+                            <div class="navbar-brand-box">
+                              <span style="color: white;text-indent: 50px; font-size: 20px; link:white; text-size:40px; text-shadow: 2px 2px 5px red;" >SMART CBT</span>  <a href="index.html" class="logo logo-dark">
+                                    <span class="logo-sm">
+                                        <img src="assets/images/logo-sm.png" alt="" height="20">
+                                    </span>
+                                    <span class="logo-lg">
+                                        <img src="assets/images/logo-sm.png" alt="" height="17">
+                                    </span>
+                                </a>
 
-                                          </li>
+                                <a href="index.html" class="logo logo-sm">
+                                    <span class="logo-sm">
+                                        <img src="assets/images/logo-sm.png" alt="" height="20">
+                                    </span>
+                                    <span class="logo-lg">
+                                        <img src="assets/images/logo-sm.png" alt="" height="19">
+                                    </span>
+                                </a>
+                            </div>
 
+                        </div>
 
-
-
-
-
-
-                                           <?php
- if(isset($_SESSION['user_id'])) {
-                        if($filepage != 'examination.php'){ ?>
-                          <li>
-
-
-                             <li>
-                                <a href="home.php"><i class="fa fa-home fa-fw"></i>Home</a>
-                            </li>
-                            <li>
-                                <a href="exam.php"><i class="fa fa-file-archive-o fa-fw"></i>Start Examination</a>
-                            </li>
-                             <li>
-                            <a href="result.php"><i class="fa fa-table fa-fw"></i> Result</a>
-                            </li>
-                            <li>
-                            <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
-                            </li>
-
-
-
-
-                            </li>
-
-
-                    <?php } else { ?>
-                            <li><a href="result_count.php" id="endExamBtn"> <i class="fa fa-user fa-fw"></i> End-Exam</a></li>
-                            <li><a href="logout.php"> <i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
-                        <?php }
-
-                    } else { ?>
-                        <li><a href="index.php"><i class="fa fa-home fa-fw"></i> Home</a></li>
-                        <li><a href="store.php"><i class="fa fa-file-archive-o fa-fw"></i> Study Store</a></li>
-                        <li><a href="student.php"><i class="fa fa-user fa-fw"></i> Register</a></li>
-                        <li><a href="author.php"><i class="fa fa-user fa-fw"></i> Author</a></li>
-                        <li><a href="login.php"><i class="fa fa-sign-in fa-fw"></i> Login</a></li>
-                    <?php } ?>
+                    </div>
                 </div>
+            </header>
 
-
-            </nav>
-
-
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="js/script.js"></script>
+          <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="js/script.js"></script>

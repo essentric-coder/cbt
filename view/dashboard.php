@@ -76,12 +76,12 @@ include('navbar.php');
 
                                               <div class="col-4">
                                                   <div>
-                                                      <div class = ""></div>
+                                                      <div class = ""><img  style="height:100px;width:100px;" class="rounded-circle header-profile-user" src="../assets/img/1.png" alt="Header Avatar"></div>
                                                   </div>
                                               </div>
                                           </div>
 
-                                          <p class="mb-0"><span class="badge badge-soft-success mr-2"> 0.8% <i class="mdi mdi-arrow-up"></i> </span> From previous period</p>
+
                                       </div>
                                   </div>
                               </div>
@@ -98,12 +98,14 @@ include('navbar.php');
 
                                               <div class="col-4">
                                                   <div>
-                                                      <div></div>
+                                                      <div>
+                                                              <div class = ""><img  style="height:100px;width:100px;" class="rounded-circle header-profile-user" src="../assets/img/2.png" alt="Header Avatar"></div>
+                                                      </div>
                                                   </div>
                                               </div>
                                           </div>
 
-                                          <p class="mb-0"><span class="badge badge-soft-success mr-2"> 0.6% <i class="mdi mdi-arrow-up"></i> </span> From previous period</p>
+
                                       </div>
                                   </div>
                               </div>
@@ -121,12 +123,14 @@ include('navbar.php');
 
                                               <div class="col-4">
                                                   <div>
-                                                      <div ></div>
+                                                      <div >
+                                                           <div class = ""><img  style="height:100px;width:100px;" class="rounded-circle header-profile-user" src="../assets/img/4.png" alt="Header Avatar"></div>
+                                                      </div>
                                                   </div>
                                               </div>
                                           </div>
 
-                                          <p class="mb-0"><span class="badge badge-soft-success mr-2"> 0.6% <i class="mdi mdi-arrow-up"></i> </span> From previous period</p>
+
                                       </div>
                                   </div>
                               </div>
@@ -144,12 +148,16 @@ include('navbar.php');
 
                                               <div class="col-4">
                                                   <div>
-                                                      <div ></div>
+                                                      <div >
+
+                                                         <div class = ""><img  style="height:100px;width:100px;" class="rounded-circle header-profile-user" src="../assets/img/6.png" alt="Header Avatar"></div>
+
+                                                      </div>
                                                   </div>
                                               </div>
                                           </div>
 
-                                          <p class="mb-0"><span class="badge badge-soft-success mr-2"> 0.6% <i class="mdi mdi-arrow-up"></i> </span> From previous period</p>
+
                                       </div>
                                   </div>
                               </div>
@@ -167,12 +175,14 @@ include('navbar.php');
 
                                               <div class="col-4">
                                                   <div>
-                                                      <div ></div>
+                                                      <div >
+                                                               <div class = ""><img  style="height:100px;width:100px;" class="rounded-circle header-profile-user" src="../assets/img/5.png" alt="Header Avatar"></div>
+                                                      </div>
                                                   </div>
                                               </div>
                                           </div>
 
-                                          <p class="mb-0"><span class="badge badge-soft-success mr-2"> 0.6% <i class="mdi mdi-arrow-up"></i> </span> From previous period</p>
+
                                       </div>
                                   </div>
                               </div>
@@ -190,12 +200,15 @@ include('navbar.php');
 
                                               <div class="col-4">
                                                   <div>
-                                                      <div ></div>
+                                                      <div >
+                                                          <div class = ""><img  style="height:100px;width:100px;" class="rounded-circle header-profile-user" src="../assets/img/3.png" alt="Header Avatar"></div>
+
+                                                      </div>
                                                   </div>
                                               </div>
                                           </div>
 
-                                          <p class="mb-0"><span class="badge badge-soft-success mr-2"> 0.6% <i class="mdi mdi-arrow-up"></i> </span> From previous period</p>
+
                                       </div>
                                   </div>
                               </div>
@@ -204,79 +217,80 @@ include('navbar.php');
                       </div>
 
                   </div>
-                  <!-- end row -->
+                  <?php
+
+                  echo ' <div class="row">
+                                                          <div class="col-12">
+                                                              <div class="card">
+                                                                  <div class="card-body">
+
+                                                                      <h4 class="card-title">Admin Logs</h4>
+                                                                      <p class="card-title-desc">
+                                                                      </p>
+
+                                                                                                              <div class="table-rep-plugin">
+                                                                                                        <div class="table-responsive mb-0" data-pattern="priority-columns">                                <br>
+
+                                                                                                        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                                                                                            <thead>
+                                                                                                                <tr>
+                                                                                                                <th scope="col">Id</th>
+                                                                                                                <th scope="col">Admin_id</th>
+                                                                                                                <th scope="col">Fullname</th>
+                                                                                                                <th scope="col">Access Level</th>
+                                                                                                                <th scope="col" >Status</th>
+                                                                                                                <th scope="col">Date and Time </th>
+                                                                                                                <th scope="col" colspan="2" >Action</th>
+                                                                                                                </tr>
+                                                                                                            </thead>
+
+                                                                                                            <tbody>';
+
+                                                                                $email_id  = $_SESSION['email'];
+                                                                                $query = mysqli_query($conn,"SELECT * FROM user_logs order by id desc limit 5");
+                                                                                  $url = "../controller/script.php?log_id=".$email_id;
+                                                                                while ($row = mysqli_fetch_assoc($query)) {
+
+                                                                                    echo ' <tr>
+                                                                                      <td>'.$row['Id'].'</td>
+                                                                                      <td>
+                                                                                          <a href="#" class="text-body font-weight-medium">'.$row['admin_id'].'</a>
+                                                                                      </td>
+                                                                                      <td>'.$row['fullname'].'</td>
+                                                                                      <td>'.$row['access_level'].'</td>
+                                                                                      <td><span class="badge badge-soft-success font-size-12">'.$row['status'].'</span></td>
+                                                                                      <td>'.$row['datetime'].'</td>
+                                                                                      <td><a href="'.$url.'" class="btn btn-primary btn-sm">Deactivate</a>
+                                                                                            <a href="'.$url.'" class="btn btn-primary btn-sm">Activate</a>
+                                                                                      </td>
+
+                                                                                  </tr>';}
 
 
+                  echo '</tbody>
+                        </table>
 
-                  <div class="row">
-                    <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4">User Logs</h4>
-
-                                    <div class="table-responsive">
-                                        <table class="table table-centered">
-                                            <thead>
-                                                <tr>
-
-                                                    <th scope="col">Id</th>
-                                                    <th scope="col">Admin_id</th>
-                                                    <th scope="col">Fullname</th>
-                                                    <th scope="col">Access Level</th>
-                                                    <th scope="col" >Status</th>
-                                                    <th scope="col">Date and Time </th>
-                                                    <th scope="col" >Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                    include '../controller/connection.php';
-                                                    $email_id  = $_SESSION['email'];
-                                                    $query = mysqli_query($conn,"SELECT * FROM user_logs");
-
-                                                    $url = "../controller/script.php?log_id=".$email_id;
-
-                                              while($row = mysqli_fetch_assoc($query)){
-                                                  echo  '<tr>
-                                                    <td>'.$row['Id'].'</td>
-                                                    <td>
-                                                        <a href="#" class="text-body font-weight-medium">'.$row['admin_id'].'</a>
-                                                    </td>
-                                                    <td>'.$row['fullname'].'</td>
-                                                    <td>'.$row['access_level'].'</td>
-                                                    <td><span class="badge badge-soft-success font-size-12">'.$row['status'].'</span></td>
-                                                    <td>'.$row['datetime'].'</td>
-                                                    <td><a href="'.$url.'" class="btn btn-primary btn-sm">Deactivate</a></td>
-                                                </tr>';
-                                              }
-                                              ?>
-
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <div class="mt-3">
-                                        <ul class="pagination pagination-rounded justify-content-center mb-0">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">Previous</a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
+                      </div></div>
+                      </div>
                   </div>
+                  </div>
+                  <!-- end col -->
+              </div>';
+
+
+
+                  ?>
+
+
+
+
+                                   <!-- end row -->
                   <!-- end row -->
-              </div>
-              <!-- End Page-content -->
+
+
+
+
+
 
 
 

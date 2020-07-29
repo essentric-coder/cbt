@@ -57,21 +57,29 @@ include('navbar.php');
                                                </thead>
 
                                                <tbody>
-                                                   <tr>
-                                                       <td>Tiger Nixon</td>
-                                                       <td>Maths</td>
-                                                       <td>Impersonation</td>
-                                                       <td>12:00 pm</td>
+                                                 <?php
+                                                     include '../controller/connection.php';
+                                               $query = mysqli_query($conn,"SELECT * FROM alerts order by id desc");
+                                               while($row = mysqli_fetch_assoc($query)){
+
+                                                 echo '  <tr>
+                                                       <td>'.$row['id'].'</td>
+                                                       <td>'.$row['exam_id'].'</td>
+                                                       <td>'.$row['exam'].'</td>
+                                                       <td>'.$row['fullname'].'</td>
+                                                       <td>'.$row['time'].'</td>
 
 
                                                        <td>
-                                                                   <div class="badge badge-soft-warning font-size-12">Logged out</div>
+                                                                   <div class="badge badge-soft-warning font-size-12">'.$row['status'].'</div>
                                                                </td>
                                                                <td>
                                                                    <a href="javascript:void(0);" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
                                                                    <a href="javascript:void(0);" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
                                                                </td>
-
+                                                     </tr>';
+                                                   }
+                                                     ?>
 
                                                </tbody>
                                              </table>

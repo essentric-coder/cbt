@@ -31,8 +31,13 @@ $img =   $row['picture'];
     <link href="../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
       <link href="../assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
       <link rel="../stylesheet" href="assets/style/bootstrap-datetimepicker.css" />
           <script src="../assets/style/bootstrap-datetimepicker.js"></script>
+
+          <!-- DataTables -->
+    <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -54,48 +59,72 @@ $img =   $row['picture'];
                                 </button>
                             </div>
 
+                            <?php
+
+                            $d = mysqli_query($conn,"SELECT * from alerts  ");
+                            $n = mysqli_num_rows($d);
+
+
+
+                            ?>
+
                             <div class="dropdown d-inline-block">
                                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="mdi mdi-bell-outline"></i>
-                                    <span class="badge badge-danger badge-pill">3</span>
+                                    <span class="badge badge-danger badge-pill"><?php echo $n;?></span>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
                                     <div class="p-3">
                                         <div class="row align-items-center">
                                             <div class="col">
-                                                <h6 class="m-0"> Notifications </h6>
+                                                <h6 class="m-0"><?php echo $n .'  '.'Notification';?>  </h6>
                                             </div>
                                             <div class="col-auto">
-                                                <a href="#!" class="small"> View All</a>
+                                                <a href="view_notification.php" class="small"> View All</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div data-simplebar style="max-height: 230px;">
 
 
-                                        <a href="#" class="text-reset notification-item">
-                                            <div class="media">
-                                                <div class="avatar-xs mr-3">
-                                                    <span class="avatar-title bg-success rounded-circle font-size-16">
-                                                        <i class="bx bx-badge-check"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mt-0 mb-1">Your item is shipped</h6>
+
+                                      <?php
+
+                                      $d = mysqli_query($conn,"SELECT * from alerts ");
+                                      while($r = mysqli_fetch_assoc($d)) {
+
+                                                echo '
+                                                <a href="#" class="text-reset notification-item">
+                                                    <div class="media">
+                                                        <div class="avatar-xs mr-3">
+                                                            <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                                <i class="bx bx-badge-check"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div class="media-body">
+                                                    <h6 class="mt-0 mb-1">'.$r['exam'].'</h6>
                                                     <div class="font-size-12 text-muted">
-                                                        <p class="mb-1">If several languages coalesce the grammar</p>
-                                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                                    </div>
+                                                        <p class="mb-1">'.$r['offence'].'</p>
+                                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i>'.$r['time'].'</p>
+
                                                 </div>
-                                            </div>
-                                        </a>
+                                                </div>
+                                                  </div>
+                                            </a>
+
+                                                ';
+                                              }
+                                                ?>
+
 
                                     </div>
                                     <div class="p-2 border-top">
-                                        <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
+                                        <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="view_notification.php">
                                             <i class="mdi mdi-arrow-right-circle mr-1"></i> View More..
                                         </a>
                                     </div>
+
+
                                 </div>
                             </div>
 
@@ -110,7 +139,7 @@ $img =   $row['picture'];
 
                                     <a class="dropdown-item" href="change_password.php"><i class="bx bx-lock-open font-size-16 align-middle mr-1"></i>Change Password</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger" href="#"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
+                                    <a class="dropdown-item text-danger" href="logout.php"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
                                 </div>
                             </div>
 

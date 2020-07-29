@@ -6,6 +6,11 @@ include 'check_session.php';
 $log_id = "";
 
 $email_id  = $_SESSION['student_email'];
+
+if(!isset($_SESSION['student_email']) || $_SESSION['student_email'] == ''){
+  header('location: ../index.php');
+}
+
 $n = mysqli_query($conn,"SELECT * FROM student_table");
 $r = mysqli_fetch_assoc($n);
 $s_id  = $r['student_id'];
@@ -34,7 +39,7 @@ $filepage = end($filepage);
 
 <head>
     <meta charset="utf-8" />
-    <title>Dashboard | Smart CBT </title>
+    <title> Smart CBT | Result </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -55,6 +60,7 @@ $filepage = end($filepage);
       <link href="../assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
       <link rel="../stylesheet" href="assets/style/bootstrap-datetimepicker.css" />
           <script src="../assets/style/bootstrap-datetimepicker.js"></script>
+
 
           <link rel="stylesheet" href="style/style.css" />
   <link rel="stylesheet" href="style/TimeCircles.css" />
@@ -80,50 +86,7 @@ $filepage = end($filepage);
                                 </button>
                             </div>
 
-                            <div class="dropdown d-inline-block">
-                                <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="mdi mdi-bell-outline"></i>
-                                    <span class="badge badge-danger badge-pill">3</span>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
-                                    <div class="p-3">
-                                        <div class="row align-items-center">
-                                            <div class="col">
-                                                <h6 class="m-0"> Notifications </h6>
-                                            </div>
-                                            <div class="col-auto">
-                                                <a href="#!" class="small"> View All</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div data-simplebar style="max-height: 230px;">
-
-
-                                        <a href="#" class="text-reset notification-item">
-                                            <div class="media">
-                                                <div class="avatar-xs mr-3">
-                                                    <span class="avatar-title bg-success rounded-circle font-size-16">
-                                                        <i class="bx bx-badge-check"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mt-0 mb-1">Your item is shipped</h6>
-                                                    <div class="font-size-12 text-muted">
-                                                        <p class="mb-1">If several languages coalesce the grammar</p>
-                                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                    </div>
-                                    <div class="p-2 border-top">
-                                        <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
-                                            <i class="mdi mdi-arrow-right-circle mr-1"></i> View More..
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                          
 
                             <div class="dropdown d-inline-block">
                                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -134,7 +97,6 @@ $filepage = end($filepage);
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <!-- item-->
 
-                                    <a class="dropdown-item" href="change_password.php"><i class="bx bx-lock-open font-size-16 align-middle mr-1"></i>Change Password</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item text-danger" href="Logout.php"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
                                 </div>

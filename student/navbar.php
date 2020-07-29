@@ -36,7 +36,7 @@ $img =   $row['picture'];
 
                 <li>
                     <a href="Dashboard.php" class="waves-effect">
-                        <i class="mdi mdi-airplay"></i><span class="badge badge-pill badge-info float-right">2</span>
+                        
                         <span>Dashboard</span>
                     </a>
 
@@ -56,7 +56,7 @@ $img =   $row['picture'];
                         <i class="mdi mdi-calendar-check"></i>
 
                         <span>Notification</span>
-                        <span class="badge badge-pill badge-danger float-right">6</span>
+
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="view_notification.php">Exam Notification</a></li>
@@ -73,7 +73,7 @@ $img =   $row['picture'];
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="Student_register.php">Register</a></li>
-                      
+
                         <li><a href="view_students.php">View Student</a></li>
                     </ul>
                 </li>

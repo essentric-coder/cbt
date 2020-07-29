@@ -83,7 +83,9 @@
                                                                                 $exam_id = $row['exam_id'];
 
                                                                                 $s_id  = $row['exam_id'];
+
                                                                                 $url = "update_exam.php?id=".$s_id;
+                                                                                $del = "delete/delete_exam.php?id=".$s_id;
 
                                                                             echo '<tr>
                                                                                 <td>'.$exam_id.'</td>
@@ -100,7 +102,7 @@
                                                                                         <td>
 
                                                                                                 <a href="'.$url.'" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
-                                                                                                <a href = "../controller/ops/deleteexam.php?id = "  class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
+                                                                                                <a href = "'.$del.'"  class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
                                                                                             </td>
                                                                                             <td>'.$examcode.'</td>
                                                                                             <td>'.$created_on.'</td>

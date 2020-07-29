@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../assets/sweetalert.min.js"></script>
+  
+</head>
+<body>
+
 <?php
 ob_start();
 session_start();
@@ -34,12 +42,56 @@ session_start();
      $_SESSION['valid'] = true;
      $_SESSION['timeout'] = time();
      $_SESSION['email'] = $_POST['email'];
-     header('location:../view/dashboard.php');
+
+     echo '<script>
+     swal({
+      title: "Access Granted!!",
+      text: "Click Ok To Proceed",
+      icon: "success",
+      buttons: true,
+      dangerMode: false,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Redirecting....");
+        window.location.assign("../view/dashboard.php");
+      } else {
+        swal("Redirecting....");
+        window.location.assign("../view/dashboard.php");
+      }
+    });
+     
+     </script>';
+    
    }
    else{
-     echo 'invalid';
+     echo '<script>
+     swal({
+      title: "Invalid Login Credentials",
+      text: "Check Your Email Address and Password!!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Redirecting....");
+        window.location.assign("../index.php");
+      } else {
+        swal("Redirecting....");
+        window.location.assign("../index.php");
+      }
+    });
+     
+     </script>';
+    
    }
 
  }
 
  ?>
+
+
+
+</body>
+</html>

@@ -21,7 +21,7 @@ include('navbar.php');
                   <div class="row">
                       <div class="col-12">
                           <div class="page-title-box d-flex align-items-center justify-content-between">
-                              <h4 class="page-title mb-0 font-size-18">Student Report</h4>
+                              <h4 class="page-title mb-0 font-size-18">Student Examination Report </h4>
 
                               <div class="page-title-right">
                                   <ol class="breadcrumb m-0">
@@ -40,42 +40,62 @@ include('navbar.php');
                                  <div class="col-12">
                                      <div class="card">
                                          <div class="card-body">
+                                           <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                  <thead>
+                            <?php
+                            include '../controller/connection.php';
+
+
+                                    $output = '';
+
+                                    $u = mysqli_query($conn,"SELECT * FROM student_table");
+                                    $g  = mysqli_fetch_assoc($u);
+                                    $uid = $g['student_id'];
+
+                                       $s = mysqli_query($conn,"SELECT * FROM result ");
 
 
 
-                                             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                                 <thead>
-                                                 <tr>
-                                                   <th>Name</th>
-                                                   <th>Phone number</th>
-                                                   <th>Gender</th>
-                                                   <th>Town</th>
-                                                   <th>Date of Birth</th>
-                                                   <th>State</th>
-                                                   <th>Status</th>
-                                                   <th>Action</th>
-                                                 </tr>
-                                                 </thead>
+                                    ?>
+                                      <tr>
+                                          <th>Id</th>
+                                          <th>Student Id</th>
+                                          <th>Fullname</th>
+                                          <th>Subject</th>
+                                          <th>Attempted Question</th>
+                                          <th>Obtained Marks</th>
+                                          <th>Exam Date</th>
+                                      </tr>
+                                  </thead>
+
+                                  <tbody>
+                                  <?php
+                                    while($row = mysqli_fetch_assoc($s)){
+                                      $eid = $row['exam_id'];
+                                       $sub = mysqli_query($conn,"SELECT * FROM exam_table ");
+                                       $r = mysqli_fetch_assoc($sub);
+                                       $subj = $r['exam_title'];
+                                       $total = $r['total_question'];
 
 
-                                               <tbody>
-                                                   <tr>
-                                                       <td>Tiger Nixon</td>
-                                                       <td>08136777465</td>
-                                                       <td>Male</td>
-                                                       <td>Lagos</td>
-                                                       <td>2011/04/25</td>
-                                                       <td>Lagos</td>
-                                                       <td>
-                                                                   <div class="badge badge-soft-warning font-size-12">Active</div>
-                                                               </td>
-                                                               <td>
-                                                                   <a href="javascript:void(0);" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
-                                                                   <a href="javascript:void(0);" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
-                                                               </td>
-                                                 </tbody>
-                                             </table>
-                                         </div>
+
+                                    echo '<tr>
+                                                      <td>'.$row['id'].'</td>
+                                                      <td>'.$row['student_id'].'</td>
+                                                      <td>'.$row['fullname'].'</td>
+                                                      <td>'.$subj.'</td>
+                                                      <td>'.$row['attend_que'].'</td>
+                                                      <td>'.$row['obtained_marks'].'</td>
+                                                      <td>'.$row['exam_date'].'</td>
+                                                   </tr>
+                                                        ';
+                                    }
+                                    ?>
+
+                                  </tbody>
+                              </table>
+
+
                                      </div>
                                  </div> <!-- end col -->
                              </div> <!-- end row -->

@@ -147,8 +147,7 @@
                                             <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                 <thead>
                                                     <tr>
-                                                        <th>Exam id</th>
-                                                        <th>Question id</th>
+
                                                         <th>Question</th>
                                                         <th>option 1</th>
                                                         <th>option 2</th>
@@ -182,8 +181,7 @@
 
 
                                                     echo '<tr>
-                                                        <td>'.$r['question_id'].'</td>
-                                                        <td>'.$r['online_exam_id'].'</td>
+                                                      
                                                         <td>'.$r['question_title'].'</td>
                                                         <td>'.$r['option_1'].'</td>
                                                         <td>'.$r['option_2'].'</td>

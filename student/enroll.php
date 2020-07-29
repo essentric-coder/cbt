@@ -86,7 +86,7 @@
                                      $search = mysqli_query($conn,"SELECT * FROM user_exam_enroll_table WHERE user_id = '$s_id' AND exam_id = '$e_id'");
                                      $count = mysqli_num_rows($search);
                                      if($count > 0){
-                                          echo $fname.'  '.$lname.' '.'lready enrolled';
+                                          echo $fname.'  '.$lname.' '.'already enrolled';
                                      }
                                      else{
                                         $insert = mysqli_query($conn,"INSERT INTO user_exam_enroll_table(user_id,exam_id,attendance_status)

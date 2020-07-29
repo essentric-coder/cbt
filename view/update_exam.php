@@ -13,6 +13,8 @@
 
 
 
+
+
                    <!-- start page title -->
                    <div class="row">
                        <div class="col-12">
@@ -50,18 +52,20 @@
                               $correct     = $row['marks_per_right_answer'];
                               $wrong     = $row['marks_per_wrong_answer'];
                               $status     = $row['exam_status'];
-
-
+                              $statuscode   = $row['exam_code'];
+                              $cr  = $row['exam_created_on'];
 
                                    ?>
 
-                            <form method="post" action="../controller/script.php" enctype="">
+
+
+                            <form method="post" action="update.php" enctype="">
                                    <div class="table-responsive">
-                                     <form method="post" id="exam_form" action="../controller/script.php">
+                                     <form method="post" id="exam_form" action="">
                                         <div class="modal-content">
                                           <!-- Modal Header -->
                                           <div class="modal-header">
-                                              <h4 class="modal-title" id="modal_title">Add Exam</h4>
+                                              <h4 class="modal-title" id="modal_title">Update Exam</h4>
                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                                           </div>
 
@@ -87,6 +91,7 @@
                                                 <div class="row">
                                                     <label class="col-md-4 text-right">Exam Duration <span class="text-danger">*</span></label>
                                                     <div class="col-md-8">
+                                                  <select name="online_exam_duration" required id="online_exam_duration" class="form-control">
                                                         <option value="5">5 Minute</option>
                                                         <option value="30">30 Minute</option>
                                                         <option value="60">1 Hour</option>
@@ -100,7 +105,7 @@
                                                 <div class="row">
                                                     <label class="col-md-4 text-right">Total Question <span class="text-danger">*</span></label>
                                                     <div class="col-md-8">
-                                                      <select name="total_question" required id="total_question" class="form-control">
+                                                      <select name="total_question" required id="total_question" class="form-control" value = "<?php echo $total; ?>">
                                                          <option value="">Select</option>
                                                          <option value="5">5 Questions </option>
                                                          <option value="10">10 Questions </option>
@@ -143,6 +148,7 @@
                                                     </div>
                                                 </div>
                                               </div>
+                                              <input type="hidden"  name = "id"  value = "<?php echo $id; ?>" />
                                           </div>
 
                                           <!-- Modal footer -->
@@ -153,9 +159,9 @@
 
 
 
-                                            <input type="submit" name="AddExam" id="button_action" class="btn btn-primary waves-effect waves-light" value="Add" />
+                                            <input type="submit" name="update_Exam" id="button_action" class="btn btn-primary waves-effect waves-light" value="UPDATE" />
 
-                                              <button type="button" class="btn btn-primary waves-effect waves-light" data-dismiss="modal">Close</button>
+
                                           </div>
                                         </div>
                                     </form>

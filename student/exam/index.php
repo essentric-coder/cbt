@@ -1,8 +1,10 @@
+
 <?php
-session_start();
-	if(!isset($_SESSION['user_id']) || $_SESSION['user_id'] == ''){
-		header('location: admin.php');
-	}else{
-  header("location:home.php");
-}
+	session_start();
+	if(!isset($_SESSION['student_email']) || $_SESSION['student_email'] == ''){
+		header('location: ../index.php');
+	}
+	else{
+		header("location:../main.php");
+	}
 ?>
