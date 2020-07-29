@@ -1,6 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../../../assets/sweetalert.min.js"></script>
+  
+</head>
+<body>
 <?php
-
-
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -58,16 +63,35 @@ if ($result == "threat") {
                 '$t',
                 '$result',
                 '$current_datetime'
-            )");
-    echo "<script>window.location.assign('../exam.php')</script>"; 
+            )");    
+    //update enrollment
+mysqli_query($conn,"UPDATE user_exam_enroll_table SET attendance_status = 'present' WHERE user_id = '$id' AND exam_id = '$examid' ");
+
 
 unset($_SESSION['student_email']);
 $_SESSION['login']=NULL;
 session_destroy();
 
-echo "<script>window.location.assign('../../index.php')</script>";
+            echo '<script>
+            swal({
+            title: "Smart CBT Agent",
+            text: "'.$result.' Detected",
+            icon: "success",
+            buttons: true,
+            dangerMode: false,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                window.location.assign("../../index.php");
+            } else {
+                window.location.assign("../../index.php");
+            }
+            });
+            </script>';
+
 
 }
+
 else if ($result == "no_threat"){
     
 //update logs
@@ -79,7 +103,22 @@ $log = mysqli_query($conn,"INSERT INTO agent_logs(exam_id,student_id,score,time,
     '$result',
     '$current_datetime'
  )");
-    echo "<script>window.location.assign('../exam.php')</script>"; 
+    echo '<script>
+    swal({
+    title: "Smart CBT Agent",
+    text: "'.$result.' Detected",
+    icon: "success",
+    buttons: true,
+    dangerMode: false,
+    })
+    .then((willDelete) => {
+    if (willDelete) {
+        window.location.assign("../exam.php");
+    } else {
+        window.location.assign("../exam.php");
+    }
+    });
+    </script>';
 }
 else if ($result == "medium_threat"){
     //update logs
@@ -91,9 +130,28 @@ $log = mysqli_query($conn,"INSERT INTO agent_logs(exam_id,student_id,score,time,
     '$result',
     '$current_datetime'
  )");
-    echo "<script>window.location.assign('../exam.php')</script>"; 
+            echo '<script>
+            swal({
+            title: "Smart CBT Agent",
+            text: "'.$result.' Detected",
+            icon: "success",
+            buttons: true,
+            dangerMode: false,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                window.location.assign("../exam.php");
+            } else {
+                window.location.assign("../exam.php");
+            }
+            });
+            </script>';
+   
 }
 
 
 
 ?>
+
+</body>
+</html>

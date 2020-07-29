@@ -14,6 +14,7 @@
 		<link href="css/responsive.css" rel="stylesheet"/>
         <link href="css/style.css" rel="stylesheet"/>
         <link rel="stylesheet" href="inc/TimeCircles.css" />
+        <script src="../../../assets/sweetalert.min.js"></script>
         <style>
             .item h2 {
         text-align:center;
@@ -144,7 +145,12 @@ $("#DateCountdown").TimeCircles();
                if(remaining_second <= 0)
                {
                   $("#CountDownTimer").TimeCircles().stop();
-                  alert('Your examination time is completed.\nYou are Redirecting to Result page.');
+                 // alert('Your Acccessment time is completed.\nYou are Redirecting to Result page.');
+                 swal("Time Elapsed!", "Your Assessment time is completed.\nYou are  been Redirected to The Result page.", "success");
+                   
+                   
+                   
+                   
                     showScores();
                   //window.location.assign("result_count.php");
                }

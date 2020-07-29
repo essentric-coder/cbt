@@ -69,7 +69,10 @@ if(!isset($_SESSION['qa']) || empty($_SESSION['qa'])){
         window.location='exam.php';
       </script>
     <?php
-	 }
+   }
+   
+   //Update exam
+mysqli_query($conn,"UPDATE user_exam_enroll_table SET attendance_status = 'present' WHERE user_id = '$uid' AND exam_id = '$exam_id' ");
 
 	$_SESSION['qa'] = array();
 	$count = 1;

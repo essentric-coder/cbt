@@ -248,7 +248,8 @@ include('navbar.php');
 
                                                                                 $email_id  = $_SESSION['email'];
                                                                                 $query = mysqli_query($conn,"SELECT * FROM user_logs order by id desc limit 5");
-                                                                                  $url = "../controller/script.php?log_id=".$email_id;
+                                                                                  $url = "../view/active.php?id=".$email_id;
+                                                                                  $urls = "../view/deactive.php?id=".$email_id;
                                                                                 while ($row = mysqli_fetch_assoc($query)) {
 
                                                                                     echo ' <tr>
@@ -260,7 +261,7 @@ include('navbar.php');
                                                                                       <td>'.$row['access_level'].'</td>
                                                                                       <td><span class="badge badge-soft-success font-size-12">'.$row['status'].'</span></td>
                                                                                       <td>'.$row['datetime'].'</td>
-                                                                                      <td><a href="'.$url.'" class="btn btn-primary btn-sm">Deactivate</a>
+                                                                                      <td><a href="'.$urls.'" class="btn btn-primary btn-sm">Deactivate</a>
                                                                                             <a href="'.$url.'" class="btn btn-primary btn-sm">Activate</a>
                                                                                       </td>
 

@@ -86,7 +86,25 @@
                                      $search = mysqli_query($conn,"SELECT * FROM user_exam_enroll_table WHERE user_id = '$s_id' AND exam_id = '$e_id'");
                                      $count = mysqli_num_rows($search);
                                      if($count > 0){
-                                          echo $fname.'  '.$lname.' '.'already enrolled';
+
+                                        echo '<script>
+                                        swal({
+                                         title: "Enrollment!!!",
+                                         text: "'.$fname.' has been enrolled",
+                                         icon: "error",
+                                         buttons: true,
+                                         dangerMode: false,
+                                        })
+                                        .then((willDelete) => {
+                                         if (willDelete) {
+                                           
+                                         } else {
+                                           
+                                          
+                                         }
+                                        });
+                                        </script>';
+                                          
                                      }
                                      else{
                                         $insert = mysqli_query($conn,"INSERT INTO user_exam_enroll_table(user_id,exam_id,attendance_status)
@@ -95,7 +113,23 @@
                                                 'Absent')
                                          ");
                                          if($insert){
-                                           echo $fname.'  '.$lname.' '.'Enrolled';
+                                            echo '<script>
+                                            swal({
+                                             title: "Enrollment!!!",
+                                             text: "'.$fname.' has been enrolled Successfully",
+                                             icon: "success",
+                                             buttons: true,
+                                             dangerMode: false,
+                                            })
+                                            .then((willDelete) => {
+                                             if (willDelete) {
+                                               
+                                             } else {
+                                               
+                                              
+                                             }
+                                            });
+                                            </script>';
                                          }
                                      }
 

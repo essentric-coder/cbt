@@ -9,9 +9,6 @@
 
 
 <?php
-
-
-
 include 'connection.php';
 include 'connection.php';
 require_once('vendor/php-excel-reader/excel_reader2.php');

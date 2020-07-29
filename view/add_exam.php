@@ -61,9 +61,10 @@
 
 
                                                                                 <th>Status</th>
-                                                                                <th>Action</th>
-                                                                                <th>Exam Code</th>
-                                                                                <th>Exam Created On</th>
+                                                                                
+                                                                                
+																				<th>Exam Created On</th>
+																				<th>Action</th>
                                                                                 </tr>
                                                                             </thead>
 
@@ -99,13 +100,15 @@
                                                                                 <td>
                                                                                             <div class="badge badge-soft-warning font-size-12">'.$status.'</div>
                                                                                         </td>
-                                                                                        <td>
-
-                                                                                                <a href="'.$url.'" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
-                                                                                                <a href = "'.$del.'"  class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
-                                                                                            </td>
-                                                                                            <td>'.$examcode.'</td>
-                                                                                            <td>'.$created_on.'</td>
+                                                                                       
+                                                                                           
+																							<td>'.$created_on.'</td>
+																							<td>
+																							<a href = "'.$del.'"  class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a>
+																							</td>
+																							
+																																															
+																																															
                                                                                 </tr>'; }
 
 

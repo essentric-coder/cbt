@@ -117,7 +117,7 @@ $img =   $row['picture'];
                 </li>
 
                 <li>
-                    <a href="logout.php" class="waves-effect">
+                    <a href="backup.php" class="waves-effect">
                         <i class="mdi mdi-inbox"></i>
                         <span>Backup</span>
                     </a>

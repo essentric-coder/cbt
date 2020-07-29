@@ -46,7 +46,7 @@ $filepage = end($filepage);
     <!-- App favicon -->
     <link rel="shortcut icon" href="../assets/images/favicon.ico">
     <link href="../assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
-
+    <script src="../assets/sweetalert.min.js"></script>
     <!-- jquery.vectormap css -->
     <link href="../assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
 
@@ -98,7 +98,7 @@ $filepage = end($filepage);
                                     <!-- item-->
 
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger" href="Logout.php"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
+                                    <a class="dropdown-item text-danger" href="logout.php"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
                                 </div>
                             </div>
 

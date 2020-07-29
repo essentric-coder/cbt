@@ -32,8 +32,7 @@ $v =  mysqli_query($conn,"SELECT * from student_table WHERE email = '$email_id' 
 $rw = mysqli_fetch_assoc($v);
 $uid = $row['student_id'];
 
-//Update exam
-mysqli_query($conn,"UPDATE user_exam_enroll_table SET attendance_status = 'present' WHERE user_id = '$uid' ");
+
 
 
 ?>

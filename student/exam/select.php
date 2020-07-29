@@ -140,7 +140,8 @@ include("header.php");
                                                                     
                                                                     }
                                                                     else{
-                                                                        header('location:exam.php'); 
+                                                                         
+                                                                        echo '<script>window.location.assign("exam.php")</script>';
                                                                     }
 
 

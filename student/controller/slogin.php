@@ -1,3 +1,12 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../../assets/sweetalert.min.js"></script>
+  
+</head>
+<body>
+
 <?php
 ob_start();
 session_start();
@@ -23,10 +32,49 @@ session_start();
      $_SESSION['valid'] = true;
      $_SESSION['timeout'] = time();
      $_SESSION['student_email'] = $_POST['email'];
-     header('location:../../student/main.php');
+
+     echo '<script>
+     swal({
+      title: "Access Granted!!",
+      text: "Click Ok To Proceed",
+      icon: "success",
+      buttons: true,
+      dangerMode: false,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Redirecting....");
+        window.location.assign("../../student/main.php");
+      } else {
+        swal("Redirecting....");
+        window.location.assign("../../student/main.php");
+      }
+    });
+     
+     </script>';
+     
    }
    else{
-     echo 'invalid';
+    echo '<script>
+    swal({
+     title: "Invalid Login Credentials",
+     text: "Check Your Email Address and Password!!",
+     icon: "warning",
+     buttons: true,
+     dangerMode: true,
+   })
+   .then((willDelete) => {
+     if (willDelete) {
+       swal("Redirecting....");
+       window.location.assign("../../student/index.php");
+     } else {
+       swal("Redirecting....");
+       window.location.assign("../../student/index.php");
+     }
+   });
+    
+    </script>';
+     
    }
 
 
@@ -35,3 +83,5 @@ session_start();
  }
 
  ?>
+</body>
+</html>
