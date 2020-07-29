@@ -2,7 +2,7 @@
 <html lang = "en">
 
  <link rel="stylesheet" href="inc/TimeCircles.css" />
-
+ <script src="../../assets/sweetalert.min.js"></script>
 <?php
    include ('examheader.php');
 
@@ -65,8 +65,21 @@ if(!isset($_SESSION['qa']) || empty($_SESSION['qa'])){
 	 {
 	 	?>
 	 	<script>
-        alert('Sorry the questions are not available. Try with some other subject');
-        window.location='exam.php';
+     swal({
+                    title: "Exam Not Available!",
+                    text: "'Sorry the questions are not available. Try with some other subject.",
+                    icon: "success",
+                    buttons: true,
+                    dangerMode: false,
+                    })
+                    .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.assign("exam.php.php");
+                    } else {
+                        window.location.assign("exam.php.php");
+                    }
+                    });
+
       </script>
     <?php
    }
@@ -231,7 +244,7 @@ include('footer.php');
 
 ?>
 
-
+<script src="../../assets/sweetalert.min.js"></script>
 <script type="text/javascript" src="inc/jquery.min.js"></script>
      <script type="text/javascript" src="inc/TimeCircles.js"></script>
 <script>
@@ -245,8 +258,23 @@ $("#DateCountdown").TimeCircles();
                if(remaining_second <= 0)
                {
                   $("#CountDownTimer").TimeCircles().stop();
-                  alert('Your examination time is completed.\nYou are Redirecting to Result page.');
-                  window.location.assign("result_count.php");
+                  
+                    swal({
+                    title: "Terminating Exam..",
+                    text: "'Your examination time is completed.\nYou are Redirecting to Result page.",
+                    icon: "success",
+                    buttons: true,
+                    dangerMode: false,
+                    })
+                    .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.assign("result_count.php");
+                    } else {
+                        window.location.assign("result_count.php");
+                    }
+                    });
+                   
+                
                }
            }, 1000);
 
